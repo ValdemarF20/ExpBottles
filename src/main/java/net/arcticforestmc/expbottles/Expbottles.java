@@ -10,6 +10,11 @@ public final class Expbottles extends JavaPlugin {
     public void onEnable() {
         this.getLogger().log(Level.INFO, "ExpBottles has been enabled");
 
+        //Commands
+        this.getCommand("xpwithdraw").setExecutor(new GiveBottle());
+
+        //Events
+        this.getServer().getPluginManager().registerEvents(new BottleThrowListener(), this);
     }
 
     @Override

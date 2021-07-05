@@ -1,3 +1,6 @@
 name: Expbottles
-version: @version@
+version: ${version}
 main: net.arcticforestmc.expbottles.Expbottles
+commands:
+  xpwithdraw:
+    description: 'Withdraw a specific amount of experience'

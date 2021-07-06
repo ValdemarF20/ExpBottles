@@ -2,6 +2,7 @@ package net.arcticforestmc.expbottles;
 
 import net.arcticforestmc.expbottles.DataManagers.DataContainer;
 import net.arcticforestmc.expbottles.Utilities.Utils;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -9,7 +10,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 public class GiveBottle implements CommandExecutor {
@@ -57,9 +61,23 @@ public class GiveBottle implements CommandExecutor {
             return;
         }
 
-        bottle = (ItemStack) dataContainer.set(bottle, "Custom-Bottle-Identifier", updatedArg);
         int newExp = playerExp - withdrawExp;
 
+        //Set NBT Tag
+        bottle = (ItemStack) dataContainer.set(bottle, "Custom-Bottle-Identifier", updatedArg);
+
+        //Update displayname and lore
+        List<String> lore = new ArrayList<>();
+        ItemMeta meta = bottle.getItemMeta();
+
+        meta.setDisplayName(ChatColor.GREEN + "Experience Bottle");
+        lore.add("Amount of experience: " + withdrawExp);
+        lore.add("");
+
+        meta.setLore(lore);
+        bottle.setItemMeta(meta);
+
+        //Give the bottle
         player.getInventory().addItem(bottle);
         Utils.setTotalExperience(player, newExp);
 

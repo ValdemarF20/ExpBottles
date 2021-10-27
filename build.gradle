@@ -37,10 +37,10 @@ tasks.register("build_vald", Copy) {
     dependsOn tasks.build
 
     from jar.archiveFile
-    into "C:\\Users\\Valdemar\\Desktop\\mc\\minecraftServers\\1.12.2-ArcticTesting\\plugins" //1.12.2-ArcticTesting - 1.16.5
+    into "C:\\Users\\Valdemar\\Desktop\\mc\\minecraftServers\\1.12.2-ArcticTesting\\plugins"
 }
 
 configure(build_vald) {
-    group = 'SlimePuncher'
+    group = 'ValdemarF'
     description = 'Build and export jar'
 }

@@ -18,7 +18,7 @@ import java.util.logging.Level;
 
 public class GiveBottle implements CommandExecutor {
 
-    private DataContainer dataContainer = Utils.getRightContainer();
+    private final DataContainer dataContainer = Utils.getRightContainer();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String Labels, String[] args){
@@ -70,9 +70,11 @@ public class GiveBottle implements CommandExecutor {
         List<String> lore = new ArrayList<>();
         ItemMeta meta = bottle.getItemMeta();
 
-        meta.setDisplayName(ChatColor.GREEN + "Experience Bottle");
-        lore.add("Amount of experience: " + withdrawExp);
+        meta.setDisplayName(ChatColor.GREEN + "XP Note - " + withdrawExp);
+
         lore.add("");
+        lore.add(ChatColor.GRAY + "Owner: " + ChatColor.GREEN + player.getName());
+        lore.add(ChatColor.GRAY + "Amount: " + ChatColor.GREEN + withdrawExp);
 
         meta.setLore(lore);
         bottle.setItemMeta(meta);
@@ -80,7 +82,5 @@ public class GiveBottle implements CommandExecutor {
         //Give the bottle
         player.getInventory().addItem(bottle);
         Utils.setTotalExperience(player, newExp);
-
-        System.out.println(dataContainer.has(bottle, "Custom-Bottle-Identifier"));
     }
 }

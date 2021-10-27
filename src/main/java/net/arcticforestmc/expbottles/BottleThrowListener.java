@@ -19,28 +19,6 @@ public class BottleThrowListener implements Listener {
 
     private DataContainer dataContainer = Utils.getRightContainer();
 
-    /*
-    @EventHandler
-    public void onBottleInteract(ExpBottleEvent e){
-        if(!(e.getEntity().getShooter() instanceof Player)) { return; }
-
-        Player player = (Player) e.getEntity().getShooter();
-        Entity bottle = e.getEntity();
-        //ItemStack bottleItem = new ItemStack();
-
-
-        dataContainer = Utils.getRightContainer();
-
-        if(dataContainer == null){
-            Bukkit.getLogger().log(Level.SEVERE, "DataContainer is null because server version is not 1.12.2");
-        }
-
-        if(dataContainer.has(bottle, "Custom-Bottle-Identifier")){
-            System.out.println("2nd True");
-        }
-    }
-     */
-
     @EventHandler
     public void onInteract(PlayerInteractEvent e){
         if(e.getAction() == Action.LEFT_CLICK_AIR || e.getAction() == Action.LEFT_CLICK_BLOCK) {return;}
@@ -58,12 +36,8 @@ public class BottleThrowListener implements Listener {
         }
 
         if(dataContainer.has(bottle, "Custom-Bottle-Identifier")){
-            System.out.println("2nd True");
-
             int totalExp = Utils.getTotalExperience(player);
             String giveExp = dataContainer.get(bottle, "Custom-Bottle-Identifier");
-
-            System.out.println(giveExp);
 
             int giveExpInt = 0;
             try{
